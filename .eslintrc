@@ -6,7 +6,6 @@ ecmaFeatures:
 plugins:
     - react
 rules:
-  # Cannot enable no-extra-parens rule as all multiline JSX expressions are wrapped
   no-extra-parens: 0
 
   jsx-quotes:
@@ -16,7 +15,6 @@ rules:
     - 2
     - acceptTranspilerName: true
   react/jsx-no-duplicate-props: 2
-  # The jsx-uses-* rules fix invalid warnings from no-unused-vars
   react/jsx-uses-vars: 2
   react/jsx-uses-react: 2
   react/no-danger: 2
@@ -27,9 +25,9 @@ rules:
   react/no-unknown-property: 2
   react/prop-types: 2
   react/react-in-jsx-scope: 2
-  react/forbid-prop-types: 0  # TODO: Rule crashes, re-enable once fixed
+  react/forbid-prop-types: 1
   react/jsx-closing-bracket-location:
-    - 1  # TODO: Upgrade to error if rule gains indentation-aligned option
+    - 1
     - tag-aligned
   react/jsx-indent-props:
     - 2
