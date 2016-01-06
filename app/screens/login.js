@@ -9,6 +9,8 @@ const React = require('react-native');
 
 const layout = require('../layout');
 
+const PrimaryScreen = require('./primary');
+
 const {
     StyleSheet,
     TextInput,
@@ -34,6 +36,10 @@ const styles = StyleSheet.create({
 
 const LoginScreen = React.createClass({
 
+    propTypes: {
+        navigator: React.PropTypes.element.isRequired
+    },
+
     getInitialState: function () {
         return {
             username: 'hello',
@@ -44,7 +50,11 @@ const LoginScreen = React.createClass({
     logIn: function () {
         this.setState({ buttonState: 'busy' })
         setTimeout(() => {
-          this.setState({ buttonState: 'success' })
+            this.props.navigator.push({
+                component: PrimaryScreen,
+                title: 'Login',
+                passProps: { myProp: 'foo' },
+            });
         }, 2000);
     },
 
@@ -54,7 +64,6 @@ const LoginScreen = React.createClass({
                 <View style={layout.quarterHeight}>
                     <TextInput
                         style={styles.welcome}
-
                         keyboardType="email-address"
                         onChangeText={(username) => this.setState({username})}
                         value={this.state.username}

@@ -8,16 +8,33 @@
 const React = require('react-native');
 const {
     AppRegistry,
+    NavigatorIOS,
+    StyleSheet,
 } = React;
 
 const LoginScreen = require('./app/screens/login');
 
 // const STORAGE_KEY = '@Reflection:primary_storage';
 
+
+const styles = StyleSheet.create({
+    navWrap: {
+        flex: 1
+    }
+});
+
 const Reflection = React.createClass({
     render: function() {
         return (
-            <LoginScreen />
+            <NavigatorIOS
+                style={styles.navWrap}
+                navigationBarHidden={true}
+                initialRoute={{
+                    component: LoginScreen,
+                    title: 'Login',
+                    passProps: { myProp: 'foo' },
+                }}
+            />
         );
     }
 });
