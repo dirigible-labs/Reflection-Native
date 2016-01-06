@@ -7,7 +7,7 @@ plugins:
     - react
 rules:
   no-extra-parens: 0
-
+  no-unused-vars: 2
   jsx-quotes:
     - 2
     - prefer-double
