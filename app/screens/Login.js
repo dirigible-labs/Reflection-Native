@@ -4,17 +4,17 @@
  */
 'use strict';
 
+const routes = require('../routes');
+
 const AwesomeButton = require('react-native-awesome-button');
 const React = require('react-native');
-
 const layout = require('../layout');
-
-const PrimaryScreen = require('./primary');
 
 const {
     StyleSheet,
     TextInput,
     View,
+    Navigator,
 } = React;
 
 const styles = StyleSheet.create({
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 const LoginScreen = React.createClass({
 
     propTypes: {
-        navigator: React.PropTypes.element.isRequired
+        navigator: React.PropTypes.object.isRequired
     },
 
     getInitialState: function () {
@@ -50,11 +50,7 @@ const LoginScreen = React.createClass({
     logIn: function () {
         this.setState({ buttonState: 'busy' })
         setTimeout(() => {
-            this.props.navigator.push({
-                component: PrimaryScreen,
-                title: 'Login',
-                passProps: { myProp: 'foo' },
-            });
+            this.props.navigator.push(routes.primary());
         }, 2000);
     },
 

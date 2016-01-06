@@ -12,7 +12,7 @@ const {
     StyleSheet,
 } = React;
 
-const LoginScreen = require('./app/screens/login');
+const routes = require('./app/routes');
 
 // const STORAGE_KEY = '@Reflection:primary_storage';
 
@@ -29,11 +29,7 @@ const Reflection = React.createClass({
             <NavigatorIOS
                 style={styles.navWrap}
                 navigationBarHidden={true}
-                initialRoute={{
-                    component: LoginScreen,
-                    title: 'Login',
-                    passProps: { myProp: 'foo' },
-                }}
+                initialRoute={routes.login()}
             />
         );
     }
