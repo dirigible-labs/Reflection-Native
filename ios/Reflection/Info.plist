@@ -18,14 +18,51 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb551751744992530</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>551751744992530</string>
+	<key>FacebookDisplayName</key>
+	<string>Reflection</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>facebook.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
@@ -43,45 +80,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  
-  <key>CFBundleURLTypes</key>
-  <array>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb551751744992530</string>
-      </array>
-    </dict>
-  </array>
-  <key>FacebookAppID</key>
-  <string>551751744992530</string>
-  <key>FacebookDisplayName</key>
-  <string>Reflection</string>
-  
-  
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <key>NSAllowsArbitraryLoads</key><true/>
-    <key>NSExceptionDomains</key>
-    <dict>
-      <key>facebook.com</key>
-      <dict>
-        <key>NSIncludesSubdomains</key> <true/>
-        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key> <false/>
-      </dict>
-      <key>fbcdn.net</key>
-      <dict>
-        <key>NSIncludesSubdomains</key> <true/>
-        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>  <false/>
-      </dict>
-      <key>akamaihd.net</key>
-      <dict>
-        <key>NSIncludesSubdomains</key> <true/>
-        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key> <false/>
-      </dict>
-    </dict>
-  </dict>
-  
 </dict>
-
 </plist>
