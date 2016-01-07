@@ -14,7 +14,6 @@ const {
     StyleSheet,
     TextInput,
     View,
-    Navigator,
 } = React;
 
 const styles = StyleSheet.create({
@@ -34,61 +33,37 @@ const styles = StyleSheet.create({
     }
 });
 
+
+var FBSDKLogin = require('react-native-fbsdklogin');
+var {
+  FBSDKLoginButton,
+} = FBSDKLogin;
+
 const LoginScreen = React.createClass({
 
     propTypes: {
         navigator: React.PropTypes.object.isRequired
     },
 
-    getInitialState: function () {
-        return {
-            username: 'hello',
-            buttonState: 'idle',
-        }
-    },
-
-    logIn: function () {
-        this.setState({ buttonState: 'busy' })
-        setTimeout(() => {
-            this.props.navigator.push(routes.primary());
-        }, 2000);
-    },
-
-    render: function() {
+    render() {
         return (
-            <View style={layout.container}>
-                <View style={layout.quarterHeight}>
-                    <TextInput
-                        style={styles.welcome}
-                        keyboardType="email-address"
-                        onChangeText={(username) => this.setState({username})}
-                        value={this.state.username}
-                    />
-                </View>
-                <View style={layout.quarterHeight}>
-                    <AwesomeButton
-                        backgroundStyle={styles.loginButtonBackground}
-                        labelStyle={styles.loginButtonLabel}
-                        transitionDuration={200}
-                        states={{
-                          idle: {
-                            text: 'Log In',
-                            onPress: this.logIn,
-                            backgroundColor: '#1155DD',
-                          },
-                          busy: {
-                            // text: 'Logging In',
-                            backgroundColor: '#002299',
-                            spinner: true,
-                          },
-                          success: {
-                            text: 'Logged In',
-                            backgroundColor: '#339944'
-                          }
-                        }}
-                        buttonState={this.state.buttonState}
-                    />
-                </View>
+            <View>
+                <FBSDKLoginButton
+                    onLoginFinished={(error, result) => {
+                        if (error) {
+                            alert('Error logging in.');
+                        } else {
+                            if (result.isCancelled) {
+                                alert('Login cancelled.');
+                            } else {
+                                alert('Logged in.');
+                            }
+                        }
+                    }}
+                    onLogoutFinished={() => alert('Logged out.')}
+                    readPermissions={[]}
+                    publishPermissions={['publish_actions']}
+                />
             </View>
         );
     }

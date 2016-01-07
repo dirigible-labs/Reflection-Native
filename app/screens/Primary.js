@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 const PrimaryScreen = React.createClass({
 
     propTypes: {
-        navigator: React.PropTypes.element.isRequired
+        navigator: React.PropTypes.object.isRequired
     },
 
     getInitialState: function () {
@@ -54,6 +54,72 @@ const PrimaryScreen = React.createClass({
         return (
             <View style={layout.container}>
                 <View style={layout.quarterHeight}>
+                    <AwesomeButton
+                        backgroundStyle={styles.loginButtonBackground}
+                        labelStyle={styles.loginButtonLabel}
+                        transitionDuration={200}
+                        states={{
+                          idle: {
+                            text: 'Happy',
+                            onPress: this.logIn,
+                            backgroundColor: '#1155DD',
+                          },
+                          busy: {
+                            // text: 'Logging In',
+                            backgroundColor: '#002299',
+                            spinner: true,
+                          },
+                          success: {
+                            text: 'Logged In',
+                            backgroundColor: '#339944'
+                          }
+                        }}
+                        buttonState={this.state.buttonState}
+                    />
+                    <AwesomeButton
+                        backgroundStyle={styles.loginButtonBackground}
+                        labelStyle={styles.loginButtonLabel}
+                        transitionDuration={200}
+                        states={{
+                          idle: {
+                            text: 'Happy',
+                            onPress: this.logIn,
+                            backgroundColor: '#1155DD',
+                          },
+                          busy: {
+                            // text: 'Logging In',
+                            backgroundColor: '#002299',
+                            spinner: true,
+                          },
+                          success: {
+                            text: 'Logged In',
+                            backgroundColor: '#339944'
+                          }
+                        }}
+                        buttonState={this.state.buttonState}
+                    />
+                    <AwesomeButton
+                        backgroundStyle={styles.loginButtonBackground}
+                        labelStyle={styles.loginButtonLabel}
+                        transitionDuration={200}
+                        states={{
+                          idle: {
+                            text: 'Happy',
+                            onPress: this.logIn,
+                            backgroundColor: '#1155DD',
+                          },
+                          busy: {
+                            // text: 'Logging In',
+                            backgroundColor: '#002299',
+                            spinner: true,
+                          },
+                          success: {
+                            text: 'Logged In',
+                            backgroundColor: '#339944'
+                          }
+                        }}
+                        buttonState={this.state.buttonState}
+                    />
                     <AwesomeButton
                         backgroundStyle={styles.loginButtonBackground}
                         labelStyle={styles.loginButtonLabel}

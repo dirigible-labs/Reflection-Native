@@ -24,12 +24,24 @@ const styles = StyleSheet.create({
 });
 
 const Reflection = React.createClass({
-    render: function() {
+
+    getInitialState() {
+        return { current_route: 'login' };
+    },
+
+    getCurrentRoute() {
+        // TODO: it's weird that I have to call the routes as
+        //       functions. Maybe because of a require() circle dep?
+        //       Should try to fix this at some point.
+        return routes[this.state.current_route]();
+    },
+
+    render() {
         return (
             <NavigatorIOS
                 style={styles.navWrap}
                 navigationBarHidden={true}
-                initialRoute={routes.login()}
+                initialRoute={this.getCurrentRoute()}
             />
         );
     }
