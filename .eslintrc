@@ -25,7 +25,7 @@ rules:
   react/no-unknown-property: 2
   react/prop-types: 2
   react/react-in-jsx-scope: 2
-  react/forbid-prop-types: 1
+  react/forbid-prop-types: 0
   react/jsx-closing-bracket-location:
     - 1
     - tag-aligned

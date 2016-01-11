@@ -1,11 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 const AwesomeButton = require('react-native-awesome-button');
 const React = require('react-native');
+const { FBSDKLoginButton } = require('react-native-fbsdklogin');
 
 const layout = require('../layout');
 
@@ -34,23 +31,23 @@ const styles = StyleSheet.create({
 const PrimaryScreen = React.createClass({
 
     propTypes: {
-        navigator: React.PropTypes.object.isRequired
+        onLogoutFinished: React.PropTypes.func.isRequired
     },
 
-    getInitialState: function () {
+    getInitialState() {
         return {
             buttonState: 'idle',
         }
     },
 
-    logIn: function () {
+    logIn() {
         this.setState({ buttonState: 'busy' })
         setTimeout(() => {
             this.setState({ buttonState: 'success' })
         }, 2000);
     },
 
-    render: function() {
+    render() {
         return (
             <View style={layout.container}>
                 <View style={layout.quarterHeight}>
@@ -143,6 +140,13 @@ const PrimaryScreen = React.createClass({
                         buttonState={this.state.buttonState}
                     />
                 </View>
+
+                <FBSDKLoginButton
+                    onLoginFinished={() => {}}
+                    onLogoutFinished={this.props.onLogoutFinished}
+                    readPermissions={[]}
+                    publishPermissions={[]}
+                />
             </View>
         );
     }
