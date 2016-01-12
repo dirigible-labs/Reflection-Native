@@ -10,7 +10,7 @@ const {
 const Login = require('../components/Login');
 const Primary = require('../components/Primary');
 const Loading = require('../components/Loading');
-
+const DataScreenContainer = require('./DataScreenContainer');
 
 var { FBSDKAccessToken } = require('react-native-fbsdkcore');
 
@@ -24,6 +24,7 @@ const Reflection = React.createClass({
 
     getInitialState() {
         return {
+            current_route: 'data',
             user_logged_in: false,
             user_loaded: false,
             user_access_token: null,
@@ -41,6 +42,18 @@ const Reflection = React.createClass({
         });
     },
 
+    renderCurrentRoute() {
+        if (!this.state.user_loaded)
+            return <Loading />;
+
+        if (!this.state.user_logged_in)
+            return <Login onLoginFinished={this.getCurrentAccessToken} />;
+
+        return this.state.current_route === 'data' ?
+            <DataScreenContainer /> :
+            <Primary onLogoutFinished={this.getCurrentAccessToken} />
+    },
+
     componentWillMount() {
         this.getCurrentAccessToken();
     },
@@ -48,14 +61,7 @@ const Reflection = React.createClass({
     render() {
         return (
             <View style={styles.navWrap}>
-            {
-                this.state.user_loaded ? (
-                    this.state.user_logged_in ?
-                    <Primary onLogoutFinished={this.getCurrentAccessToken} /> :
-                    <Login onLoginFinished={this.getCurrentAccessToken} />
-                ) :
-                <Loading />
-            }
+            { this.renderCurrentRoute() }
             </View>
         );
     }
