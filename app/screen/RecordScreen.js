@@ -1,28 +1,32 @@
 'use strict';
 
 const React = require('react-native');
-const { FBSDKLoginButton } = require('react-native-fbsdklogin');
 
-const layout = require('../layout');
-const RecordButton = require('./RecordButton');
+const RecordButton = require('../component/RecordButton');
 
 const {
     View,
     Text,
+    StyleSheet,
 } = React;
 
 
-const PrimaryScreen = React.createClass({
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        flexDirection: 'column',
+        backgroundColor: '#F5FCFF',
+    },
+});
+
+const RecordScreen = React.createClass({
 
     getInitialState() {
         return {
             recording: false,
             success: false,
         };
-    },
-
-    propTypes: {
-        onLogoutFinished: React.PropTypes.func.isRequired
     },
 
     _recordEvent(type, callback) {
@@ -68,7 +72,7 @@ const PrimaryScreen = React.createClass({
 
     render() {
         return (
-            <View style={layout.container}>
+            <View style={styles.container}>
             {this.state.recording ?
                 <Text>Recording</Text> :
                 this.state.success ?
@@ -77,28 +81,21 @@ const PrimaryScreen = React.createClass({
                     <RecordButton title="Okay" onPress={this.confirmSuccess} />
                 </View> :
                 <View>
-                    <View style={layout.quarterHeight}>
+                    <View>
                         <RecordButton title="Happy" onPress={this.recordHappy} />
                     </View>
 
-                    <View style={layout.quarterHeight}>
+                    <View>
                         <RecordButton title="Sad" onPress={this.recordSad} />
                     </View>
 
-                    <View style={layout.quarterHeight}>
+                    <View>
                         <RecordButton title="Afraid / Surprised" onPress={this.recordAfraid} />
                     </View>
 
-                    <View style={layout.quarterHeight}>
+                    <View>
                         <RecordButton title="Angry / Disgusted" onPress={this.recordAngry} />
                     </View>
-
-                    <FBSDKLoginButton
-                        onLoginFinished={() => {}}
-                        onLogoutFinished={this.props.onLogoutFinished}
-                        readPermissions={[]}
-                        publishPermissions={[]}
-                    />
                 </View>
             }
             </View>
@@ -106,4 +103,4 @@ const PrimaryScreen = React.createClass({
     }
 });
 
-module.exports = PrimaryScreen;
+module.exports = RecordScreen;

@@ -2,7 +2,7 @@
 
 const React = require('react-native');
 
-const DataScreen = require('../components/DataScreen');
+const DataScreen = require('../screen/DataScreen');
 
 const DataScreenContainer = React.createClass({
 

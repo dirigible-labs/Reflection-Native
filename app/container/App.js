@@ -1,30 +1,24 @@
 'use strict';
 
 const React = require('react-native');
-const {
-    // NavigatorIOS,
-    StyleSheet,
-    View,
-} = React;
 
-const Login = require('../components/Login');
-const Primary = require('../components/Primary');
-const Loading = require('../components/Loading');
-const DataScreenContainer = require('./DataScreenContainer');
-
+const SideMenu = require('react-native-side-menu');
 var { FBSDKAccessToken } = require('react-native-fbsdkcore');
 
-const styles = StyleSheet.create({
-    navWrap: {
-        flex: 1
-    }
-});
+
+const DataScreenContainer = require('./DataScreenContainer');
+
+const LoginScreen = require('../screen/LoginScreen');
+const RecordScreen = require('../screen/RecordScreen');
+const LoadingScreen = require('../screen/LoadingScreen');
+const SideMenuScreen = require('../screen/SideMenuScreen')
+
 
 const Reflection = React.createClass({
 
     getInitialState() {
         return {
-            current_route: 'data',
+            current_route: 'primary',
             user_logged_in: false,
             user_loaded: false,
             user_access_token: null,
@@ -42,27 +36,42 @@ const Reflection = React.createClass({
         });
     },
 
+    updateRoute(route) {
+        console.log('Updating route: ', route);
+        this.setState({ current_route: route });
+    },
+
     renderCurrentRoute() {
         if (!this.state.user_loaded)
-            return <Loading />;
+            return <LoadingScreen />;
 
         if (!this.state.user_logged_in)
-            return <Login onLoginFinished={this.getCurrentAccessToken} />;
+            return <LoginScreen onLoginFinished={this.getCurrentAccessToken} />;
 
         return this.state.current_route === 'data' ?
             <DataScreenContainer /> :
-            <Primary onLogoutFinished={this.getCurrentAccessToken} />
+            <RecordScreen />
     },
 
     componentWillMount() {
         this.getCurrentAccessToken();
     },
 
-    render() {
+    renderSideMenu() {
         return (
-            <View style={styles.navWrap}>
-            { this.renderCurrentRoute() }
-            </View>
+            <SideMenuScreen
+                updateRoute={this.updateRoute}
+                onLogoutFinished={this.getCurrentAccessToken}
+            />
+        );
+    },
+
+    render() {
+
+        return (
+            <SideMenu menu={this.renderSideMenu()}>
+                { this.renderCurrentRoute() }
+            </SideMenu>
         );
     }
 });

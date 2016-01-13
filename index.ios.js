@@ -5,5 +5,5 @@
 'use strict';
 
 const {AppRegistry} = require('react-native');
-const Reflection = require('./app/containers/App');
+const Reflection = require('./app/container/App');
 AppRegistry.registerComponent('Reflection', () => Reflection);

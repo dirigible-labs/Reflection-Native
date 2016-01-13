@@ -8,13 +8,13 @@ const {
 } = React;
 
 const styles = StyleSheet.create({
-    loginButtonBackground: {
-        flex: 1,
+    buttonBackground: {
+        // flex: 1,
         height: 40,
         borderRadius: 5,
         margin: 20,
     },
-    loginButtonLabel: {
+    buttonLabel: {
         color: 'white'
     }
 });
@@ -40,8 +40,8 @@ const RecordButton = React.createClass({
     render() {
         return (
             <AwesomeButton
-                backgroundStyle={styles.loginButtonBackground}
-                labelStyle={styles.loginButtonLabel}
+                backgroundStyle={styles.buttonBackground}
+                labelStyle={styles.buttonLabel}
                 transitionDuration={200}
                 states={{
                   idle: {

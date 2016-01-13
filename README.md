@@ -1,12 +1,15 @@
 # Reflection-Native
 
 
+### TODO
+- add settings screen with logout button, info about currently logged in user
+- add hamburger menu to allow switching between 3 screens: settings, data overview, and data entry, maybe use https://github.com/react-native-fellowship/react-native-side-menu
+
 
 # Screens
-## 1. Login Screen
-## 2. Register Screen
+## 1. Login Screen /
 
-## 3. Entry Screen
+## 2. Entry Screen
 Default when user is already logged in
 
 Displays 4 buttons. When any button is hit:
@@ -16,7 +19,7 @@ Displays 4 buttons. When any button is hit:
 3. on success button releases to normal state again
 4. success message is displayed to user
 
-## 4. Data review screen
+## 3. Data review screen
 
 Shows historic data for user entry. Values displayed are:
 
@@ -25,7 +28,9 @@ Shows historic data for user entry. Values displayed are:
 3. Other things TK
 
 
-## 5. Settings page
+## 4. Settings page
 
 2. which day of the week to start on
 1. logout
+
+
