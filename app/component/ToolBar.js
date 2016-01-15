@@ -1,13 +1,15 @@
 'use strict';
 
-var React = require('react-native');
-var {
+const React = require('react-native');
+const {
   StyleSheet,
   Text,
   View,
   Component
 } = React;
 
+
+const colors = require('./colors');
 
 class ToolBar extends Component{
     render() {
@@ -23,25 +25,28 @@ class ToolBar extends Component{
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     toolbar: {
-        backgroundColor: '#81c04d',
+        backgroundColor: colors.a_light,
         paddingTop: 30,
         paddingBottom: 10,
-        flexDirection: 'row'    //Step 1
+        flexDirection: 'row',
     },
 
     toolbarButton:{
-        width: 50,            //Step 2
-        color:'#fff',
-        textAlign:'center'
+        width: 60,
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#ffffff33',
+        textAlign: 'center',
     },
 
     toolbarTitle:{
-        color:'#fff',
-        textAlign:'center',
-        fontWeight:'bold',
-        flex:1                //Step 3
+        color: '#ffffff88',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 14,
+        flex: 1,
     },
 
 });

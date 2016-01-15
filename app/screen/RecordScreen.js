@@ -2,7 +2,6 @@
 
 const React = require('react-native');
 
-const RecordButton = require('../component/RecordButton');
 const ToolBar = require('../component/ToolBar');
 const colors = require('../component/colors');
 
@@ -11,6 +10,7 @@ const {
     Text,
     TouchableHighlight,
     View,
+    Component,
 } = React;
 
 
@@ -49,6 +49,29 @@ const styles = StyleSheet.create({
         color: 'white',
     }
 });
+
+class RecordButton extends Component {
+
+    render() {
+        return (
+            <TouchableHighlight
+                underlayColor={this.props.underlayColor}
+                onPress={this.props.onPress}
+                style={[styles.button, {backgroundColor: this.props.backgroundColor}]}
+            >
+                <Text style={styles.buttonText}>{this.props.text}</Text>
+            </TouchableHighlight>
+        );
+    }
+}
+
+RecordButton.propTypes = {
+    underlayColor: React.PropTypes.string.isRequired,
+    backgroundColor: React.PropTypes.string.isRequired,
+    text: React.PropTypes.string.isRequired,
+    onPress: React.PropTypes.func.isRequired,
+}
+
 
 const RecordScreen = React.createClass({
 
@@ -104,20 +127,32 @@ const RecordScreen = React.createClass({
         return (
             <View style={styles.content}>
                 <View style={styles.buttonRow}>
-                    <TouchableHighlight underlayColor={colors.a_light} onPress={this.recordHappy} style={[styles.button, {backgroundColor: colors.a}]}>
-                        <Text style={styles.buttonText}>{SMILY}</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={colors.b_light} onPress={this.recordSad} style={[styles.button, {backgroundColor: colors.b}]}>
-                        <Text style={styles.buttonText}>{SAD}</Text>
-                    </TouchableHighlight>
+                    <RecordButton
+                        underlayColor={colors.a_light}
+                        onPress={this.recordHappy}
+                        backgroundColor={colors.a}
+                        text={SMILY}
+                    />
+                    <RecordButton
+                        underlayColor={colors.b_light}
+                        onPress={this.recordSad}
+                        backgroundColor={colors.b}
+                        text={SAD}
+                    />
                 </View>
                 <View style={styles.buttonRow}>
-                    <TouchableHighlight underlayColor={colors.d_light} onPress={this.recordAfraid} style={[styles.button, {backgroundColor: colors.d}]}>
-                        <Text style={styles.buttonText}>{SURPRISED}</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor={colors.e_light} onPress={this.recordAngry} style={[styles.button, {backgroundColor: colors.e}]}>
-                        <Text style={styles.buttonText}>{ANGRY}</Text>
-                    </TouchableHighlight>
+                    <RecordButton
+                        underlayColor={colors.d_light}
+                        onPress={this.recordAfraid}
+                        backgroundColor={colors.d}
+                        text={SURPRISED}
+                    />
+                    <RecordButton
+                        underlayColor={colors.e_light}
+                        onPress={this.recordAngry}
+                        backgroundColor={colors.e}
+                        text={ANGRY}
+                    />
                 </View>
             </View>
         );
@@ -132,7 +167,12 @@ const RecordScreen = React.createClass({
                     this.state.success ?
                     <View>
                         <Text>Success</Text>
-                        <RecordButton title="Okay" onPress={this.confirmSuccess} />
+                        <RecordButton
+                            text="Okay"
+                            onPress={this.confirmSuccess}
+                            underlayColor={colors.e_light}
+                            backgroundColor={colors.e}
+                        />
                     </View> : this.renderButtonView()
                 }
             </View>
