@@ -28,23 +28,18 @@ const SideMenu = React.createClass({
     },
 
     setRoutePrimary() {
-        this.props.updateRoute('primary');
+        this.props.updateRoute('record');
     },
 
     setRouteData() {
         this.props.updateRoute('data');
     },
 
-    setRouteSettings() {
-        this.props.updateRoute('settings');
-    },
-
     render() {
         return (
             <View style={styles.container}>
-                <SideMenuButton onPress={this.setRoutePrimary} title="Reflections" />
+                <SideMenuButton onPress={this.setRoutePrimary} title="Record" />
                 <SideMenuButton onPress={this.setRouteData} title="Data" />
-                <SideMenuButton onPress={this.setRouteSettings} title="Settings" />
                 <FBSDKLoginButton
                     onLoginFinished={() => {}}
                     onLogoutFinished={this.props.onLogoutFinished}

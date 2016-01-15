@@ -18,7 +18,7 @@ const Reflection = React.createClass({
 
     getInitialState() {
         return {
-            current_route: 'primary',
+            current_route: 'record',
             user_logged_in: false,
             user_loaded: false,
             user_access_token: null,
@@ -37,7 +37,6 @@ const Reflection = React.createClass({
     },
 
     updateRoute(route) {
-        console.log('Updating route: ', route);
         this.setState({ current_route: route });
     },
 
@@ -48,9 +47,11 @@ const Reflection = React.createClass({
         if (!this.state.user_logged_in)
             return <LoginScreen onLoginFinished={this.getCurrentAccessToken} />;
 
-        return this.state.current_route === 'data' ?
-            <DataScreenContainer /> :
-            <RecordScreen />
+        if (this.state.current_route === 'data')
+            return <DataScreenContainer />;
+
+        if (this.state.current_route === 'record')
+            return <RecordScreen />;
     },
 
     componentWillMount() {
@@ -69,7 +70,7 @@ const Reflection = React.createClass({
     render() {
 
         return (
-            <SideMenu menu={this.renderSideMenu()}>
+            <SideMenu menu={ this.renderSideMenu() }>
                 { this.renderCurrentRoute() }
             </SideMenu>
         );
