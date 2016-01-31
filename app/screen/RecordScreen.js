@@ -5,10 +5,11 @@ const React = require('react-native');
 const TopBar = require('../component/TopBar');
 const colors = require('../component/colors');
 
+const Button = require('../component/Button');
+
 const {
     StyleSheet,
     Text,
-    TouchableHighlight,
     View,
     Component,
 } = React;
@@ -34,43 +35,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
     },
-
-    button: {
-        justifyContent: 'center',
-        flex: 1,
-        alignItems: 'center',
-        alignSelf: 'stretch',
-    },
-
-    buttonText: {
-        // backgroundColor: 'white',
-        fontSize: 15,
-        fontWeight: '500',
-        color: 'white',
-    }
 });
-
-class RecordButton extends Component {
-
-    render() {
-        return (
-            <TouchableHighlight
-                underlayColor={this.props.underlayColor}
-                onPress={this.props.onPress}
-                style={[styles.button, {backgroundColor: this.props.backgroundColor}]}
-            >
-                <Text style={styles.buttonText}>{this.props.text}</Text>
-            </TouchableHighlight>
-        );
-    }
-}
-
-RecordButton.propTypes = {
-    underlayColor: React.PropTypes.string.isRequired,
-    backgroundColor: React.PropTypes.string.isRequired,
-    text: React.PropTypes.string.isRequired,
-    onPress: React.PropTypes.func.isRequired,
-}
 
 
 class RecordScreen extends Component {
@@ -134,13 +99,13 @@ class RecordScreen extends Component {
         return (
             <View style={styles.content}>
                 <View style={styles.buttonRow}>
-                    <RecordButton
+                    <Button
                         underlayColor={colors.a_light}
                         onPress={this.recordHappy.bind(this)}
                         backgroundColor={colors.a}
                         text={SMILY}
                     />
-                    <RecordButton
+                    <Button
                         underlayColor={colors.b_light}
                         onPress={this.recordSad.bind(this)}
                         backgroundColor={colors.b}
@@ -148,13 +113,13 @@ class RecordScreen extends Component {
                     />
                 </View>
                 <View style={styles.buttonRow}>
-                    <RecordButton
+                    <Button
                         underlayColor={colors.d_light}
                         onPress={this.recordAfraid.bind(this)}
                         backgroundColor={colors.d}
                         text={SURPRISED}
                     />
-                    <RecordButton
+                    <Button
                         underlayColor={colors.e_light}
                         onPress={this.recordAngry.bind(this)}
                         backgroundColor={colors.e}
@@ -174,7 +139,7 @@ class RecordScreen extends Component {
                     this.state.success ?
                     <View>
                         <Text>Success</Text>
-                        <RecordButton
+                        <Button
                             text="Okay"
                             onPress={this.confirmSuccess.bind(this)}
                             underlayColor={colors.e_light}
