@@ -27,7 +27,7 @@ class TopBar extends Component {
                 <View style={styles.toolbar}>
                     <Text onPress={this.onPress.bind(this)} style={styles.toolbarButton}>Menu</Text>
                     <Text style={styles.toolbarTitle}>Reflection</Text>
-                    <Text style={styles.toolbarButton}>?</Text>
+                    <Text style={styles.toolbarButton} />
                 </View>
             </View>
         );

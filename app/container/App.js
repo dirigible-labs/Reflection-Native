@@ -10,8 +10,8 @@ const {
     Component,
 } = React;
 
-const DataScreenContainer = require('./DataScreenContainer');
 
+const DataScreen = require('../screen/DataScreen');
 const LoginScreen = require('../screen/LoginScreen');
 const RecordScreen = require('../screen/RecordScreen');
 const LoadingScreen = require('../screen/LoadingScreen');
@@ -51,43 +51,39 @@ class Reflection extends Component {
     }
 
     updateRoute(route) {
-        this.setState({ current_route: route });
-    }
-
-    renderCurrentRoute() {
-        if (!this.state.user_loaded)
-            return <LoadingScreen />;
-
-        if (!this.state.user_logged_in)
-            return <LoginScreen onLoginFinished={this.getCurrentAccessToken.bind(this)} />;
-
-        if (this.state.current_route === 'data')
-            return <DataScreenContainer />;
-
-        if (this.state.current_route === 'record')
-            return <RecordScreen openMenu={this.openMenu.bind(this)} />;
+        this.setState({
+            current_route: route,
+            is_menu_open: false,
+        });
     }
 
     componentWillMount() {
         this.getCurrentAccessToken();
     }
 
-    renderSideMenu() {
-        return (
+    renderMain() {
+        let Screen = this.state.current_route === 'data' ? DataScreen : RecordScreen;
+        let menu = (
             <SideMenuScreen
                 updateRoute={this.updateRoute.bind(this)}
                 onLogoutFinished={this.getCurrentAccessToken.bind(this)}
             />
         );
+        return (
+            <SideMenu menu={menu} isOpen={this.state.is_menu_open}>
+                <Screen openMenu={this.openMenu.bind(this)} />
+            </SideMenu>
+        );
     }
 
     render() {
+        if (!this.state.user_loaded)
+            return <LoadingScreen />;
 
-        return (
-            <SideMenu menu={this.renderSideMenu()} isOpen={this.state.is_menu_open}>
-                { this.renderCurrentRoute() }
-            </SideMenu>
-        );
+        if (!this.state.user_logged_in)
+            return <LoginScreen onLoginFinished={this.getCurrentAccessToken.bind(this)} />;
+
+        return this.renderMain();
     }
 }
 
