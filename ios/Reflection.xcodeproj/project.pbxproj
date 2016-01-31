@@ -715,7 +715,7 @@
 				INFOPLIST_FILE = Reflection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = org.reflection.Reflection;
+				PRODUCT_BUNDLE_IDENTIFIER = Reflecting;
 				PRODUCT_NAME = Reflection;
 			};
 			name = Debug;
@@ -736,7 +736,7 @@
 				INFOPLIST_FILE = Reflection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = org.reflection.Reflection;
+				PRODUCT_BUNDLE_IDENTIFIER = Reflecting;
 				PRODUCT_NAME = Reflection;
 			};
 			name = Release;
@@ -824,6 +824,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdkcore/iOS",
 					"$(SRCROOT)/../node_modules/react-native-fbsdklogin/iOS",
 				);
+				INSTALL_PATH = "$(HOME)/Applications";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;

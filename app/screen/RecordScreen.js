@@ -2,7 +2,7 @@
 
 const React = require('react-native');
 
-const ToolBar = require('../component/ToolBar');
+const TopBar = require('../component/TopBar');
 const colors = require('../component/colors');
 
 const {
@@ -73,14 +73,15 @@ RecordButton.propTypes = {
 }
 
 
-const RecordScreen = React.createClass({
+class RecordScreen extends Component {
 
-    getInitialState() {
-        return {
+    constructor(props) {
+        super(props);
+        this.state = {
             recording: false,
             success: false,
-        };
-    },
+        }
+    }
 
     _recordEvent(type, callback) {
         this.setState({ recording: true });
@@ -100,28 +101,34 @@ const RecordScreen = React.createClass({
             console.log('Response', responseJSON.data);
             callback(responseJSON.data);
         }).catch((e) => console.log('Error', e));
-    },
+    }
+
+    openMenu() {
+        this.props.openMenu();
+    }
 
     recordHappy(callback) {
         this._recordEvent('happy', callback);
-    },
+    }
 
     recordSad(callback) {
         this._recordEvent('sad', callback);
-    },
+    }
 
     recordAfraid(callback) {
         this._recordEvent('afraid', callback);
-    },
+    }
 
     recordAngry(callback) {
         this._recordEvent('angry', callback);
-    },
+    }
 
     confirmSuccess() {
-        // Reset to initial state
-        this.setState(this.getInitialState());
-    },
+        this.setState({
+            recording: false,
+            success: false,
+        });
+    }
 
     renderButtonView() {
         return (
@@ -129,13 +136,13 @@ const RecordScreen = React.createClass({
                 <View style={styles.buttonRow}>
                     <RecordButton
                         underlayColor={colors.a_light}
-                        onPress={this.recordHappy}
+                        onPress={this.recordHappy.bind(this)}
                         backgroundColor={colors.a}
                         text={SMILY}
                     />
                     <RecordButton
                         underlayColor={colors.b_light}
-                        onPress={this.recordSad}
+                        onPress={this.recordSad.bind(this)}
                         backgroundColor={colors.b}
                         text={SAD}
                     />
@@ -143,25 +150,25 @@ const RecordScreen = React.createClass({
                 <View style={styles.buttonRow}>
                     <RecordButton
                         underlayColor={colors.d_light}
-                        onPress={this.recordAfraid}
+                        onPress={this.recordAfraid.bind(this)}
                         backgroundColor={colors.d}
                         text={SURPRISED}
                     />
                     <RecordButton
                         underlayColor={colors.e_light}
-                        onPress={this.recordAngry}
+                        onPress={this.recordAngry.bind(this)}
                         backgroundColor={colors.e}
                         text={ANGRY}
                     />
                 </View>
             </View>
         );
-    },
+    }
 
     render() {
         return (
             <View style={styles.screen}>
-                <ToolBar />
+                <TopBar openMenu={this.openMenu.bind(this)}/>
                 {this.state.recording ?
                     <Text>Recording</Text> :
                     this.state.success ?
@@ -169,7 +176,7 @@ const RecordScreen = React.createClass({
                         <Text>Success</Text>
                         <RecordButton
                             text="Okay"
-                            onPress={this.confirmSuccess}
+                            onPress={this.confirmSuccess.bind(this)}
                             underlayColor={colors.e_light}
                             backgroundColor={colors.e}
                         />
@@ -178,6 +185,10 @@ const RecordScreen = React.createClass({
             </View>
         );
     }
-});
+}
+
+RecordScreen.propTypes = {
+    openMenu: React.PropTypes.func.isRequired,
+};
 
 module.exports = RecordScreen;

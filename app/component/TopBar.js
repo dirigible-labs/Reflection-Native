@@ -11,12 +11,21 @@ const {
 
 const colors = require('./colors');
 
-class ToolBar extends Component{
+class TopBar extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    onPress() {
+        this.props.openMenu();
+    }
+
     render() {
         return (
             <View>
                 <View style={styles.toolbar}>
-                    <Text style={styles.toolbarButton}>Menu</Text>
+                    <Text onPress={this.onPress.bind(this)} style={styles.toolbarButton}>Menu</Text>
                     <Text style={styles.toolbarTitle}>Reflection</Text>
                     <Text style={styles.toolbarButton}>?</Text>
                 </View>
@@ -24,6 +33,11 @@ class ToolBar extends Component{
         );
     }
 }
+
+TopBar.propTypes = {
+    openMenu: React.PropTypes.func.isRequired,
+}
+
 
 const styles = StyleSheet.create({
     toolbar: {
@@ -51,4 +65,4 @@ const styles = StyleSheet.create({
 
 });
 
-module.exports = ToolBar;
+module.exports = TopBar;
