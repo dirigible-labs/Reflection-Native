@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
 const getText = (() => {
 
     const TEXT = [
-        '-   --',
-        '--   -',
-        '---   ',
-        ' ---  ',
-        '  --- ',
-        '   ---',
+        '•     ',
+        ' •    ',
+        '  •   ',
+        '   •  ',
+        '    • ',
+        '     •',
     ];
     // const TEXT = [
     //     '8)',

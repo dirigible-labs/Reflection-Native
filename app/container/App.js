@@ -30,7 +30,7 @@ class Reflection extends Component {
             user_access_token: null,
 
             // UI state
-            current_route: 'record',
+            current_route: 'data',
             is_menu_open: false,
         }
     }

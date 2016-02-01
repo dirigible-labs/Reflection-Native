@@ -10,15 +10,19 @@ const {
     StyleSheet,
 } = React;
 
+const colors = require('../component/Button');
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'white',
+        flexDirection: 'row',
+        backgroundColor: colors.a,
     },
 
     content: {
-        flex: 1, flexDirection: 'column'
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: colors.a,
     },
 });
 
