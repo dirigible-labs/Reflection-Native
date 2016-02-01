@@ -25,8 +25,8 @@ class TopBar extends Component {
         return (
             <View>
                 <View style={styles.toolbar}>
-                    <Text onPress={this.onPress.bind(this)} style={styles.toolbarButton}>Menu</Text>
-                    <Text style={styles.toolbarTitle}>Reflection</Text>
+                    <Text onPress={this.onPress.bind(this)} style={styles.toolbarButton}>menu</Text>
+                    <Text style={styles.toolbarTitle}>reflecting</Text>
                     <Text style={styles.toolbarButton} />
                 </View>
             </View>
@@ -37,7 +37,6 @@ class TopBar extends Component {
 TopBar.propTypes = {
     openMenu: React.PropTypes.func.isRequired,
 }
-
 
 const styles = StyleSheet.create({
     toolbar: {

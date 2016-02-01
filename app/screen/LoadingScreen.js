@@ -28,14 +28,15 @@ const styles = StyleSheet.create({
 });
 
 
-const getNextText = (() => {
+const getText = (() => {
 
     const TEXT = [
-        '..  ',
-        '... ',
-        ' ...',
-        '  ..',
-        '.  .',
+        '-   --',
+        '--   -',
+        '---   ',
+        ' ---  ',
+        '  --- ',
+        '   ---',
     ];
     // const TEXT = [
     //     '8)',
@@ -91,40 +92,42 @@ const getNextText = (() => {
     }
 })();
 
+
+const getRandomColor = () => {
+    let colorKeys = Object.keys(colors);
+    return colors[colorKeys[Math.floor(Math.random() * colorKeys.length)]];
+}
+
+
 class LoadingScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        let colorKeys = Object.keys(colors);
-        let backgroundColor = colors[colorKeys[Math.floor(Math.random() * colorKeys.length)]];
-
+        this.backgroundColor = this.props.backgroundColor || getRandomColor();
         this.state = {
-            loadingText: getNextText(),
-            backgroundColor
+            loadingText: getText()
         }
     }
 
-    setNextFace () {
-        this._nextFace = setTimeout(()=> {
-            this.setState({loadingText: getNextText()});
-            this.setNextFace();
+    startNextTextTimer () {
+        this._nextTextTimer = setTimeout(()=> {
+            this.setState({ loadingText: getText() });
+            this.startNextTextTimer();
         }, 500);
     }
 
     componentWillUnmount () {
-        clearTimeout(this._nextFace);
+        clearTimeout(this._nextTextTimer);
     }
 
     componentDidMount () {
-        this.setNextFace();
+        this.startNextTextTimer();
     }
 
     render() {
-
-
         return (
             <View style={styles.screen}>
-                <View style={[styles.content, {backgroundColor: this.state.backgroundColor}]}>
+                <View style={[styles.content, {backgroundColor: this.backgroundColor}]}>
                     <Text style={styles.text}>{this.state.loadingText}</Text>
                 </View>
             </View>
@@ -132,5 +135,9 @@ class LoadingScreen extends React.Component {
     }
 
 };
+
+LoadingScreen.propTypes = {
+    backgroundColor: React.PropTypes.string,
+}
 
 module.exports = LoadingScreen;
